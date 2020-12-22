@@ -1,1 +1,1 @@
-# PFE-HexaCoders
+# Amazigh OCR 
