@@ -8,8 +8,8 @@
 >
 >**_Tom Mitchell_**
 
-Example: playing checkers.
----
+#### Example: playing checkers.
+
 
 - E = the experience of playing many games of checkers
 
