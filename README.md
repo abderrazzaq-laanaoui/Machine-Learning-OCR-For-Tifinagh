@@ -1,5 +1,5 @@
 # Amazigh OCR 
-## What is Machine Learning?
+## Qu'est-ce que l'apprentissage automatique (Machine Learning) ?
 >The field of study that gives computers the ability to learn without being explicitly programmed.
 >
 >**_Arthur Samuel_**
@@ -8,23 +8,30 @@
 >
 >**_Tom Mitchell_**
 
-#### Example: playing checkers.
+#### Exemple : jouer aux dames.
 
 
-- E = the experience of playing many games of checkers
+- **E** =  L'experience est de jouer à de nombreuses parties de dames.
 
-- T = the task of playing checkers.
+- **T** =  La tâche consiste à jouer aux dames.
 
-- P = the probability that the program will win the next game. 
+- **P** =  La performance est la probabilité que le programme gagne le prochain match. 
 
 
 
 \
-In general, any machine learning problem can be assigned to one of two broad classifications:
+En général, tout problème de Machine Learning peut être attribué à l'une des deux grandes classifications :
 
-## Supervised Learning:
-In supervised learning, we are given a data set and already know what our correct output should look like, having the idea that there is a relationship between the input and the output.
+## Apprentissage Supervisé:
+Dans l'apprentissage supervisé, on nous donne un ensemble de données et nous savons déjà à quoi doit ressembler notre sortie correcte, en ayant l'idée qu'il y a une relation entre l'entrée et la sortie.
 
-Supervised learning problems are categorized into "regression" and "classification" problems. In a regression problem, we are trying to predict results within a continuous output, meaning that we are trying to map input variables to some continuous function. In a classification problem, we are instead trying to predict results in a discrete output. In other words, we are trying to map input variables into discrete categories. 
+Les problèmes d'apprentissage supervisés sont classés en deux catégories : les problèmes de **_"régression"_** et les problèmes de **_"classification"_**. \
+Dans un problème de régression, nous essayons de prédire les résultats dans une sortie continue, ce qui signifie que nous essayons de faire correspondre les variables d'entrée à une fonction continue quelconque. \
+Dans un problème de classification, nous essayons plutôt de prédire les résultats dans une sortie discrète. En d'autres termes, nous essayons de faire correspondre les variables d'entrée à des catégories discrètes. 
 
+#### Exemple :
+- **Regression** : Given a picture of a person, we have to predict their age on the basis of the given picture
 
+- **Classification** : Given a patient with a tumor, we have to predict whether the tumor is malignant or benign. 
+
+## Apprentissage Non-Supervisé:
