@@ -42,3 +42,6 @@ Nous pouvons dériver cette structure en regroupant les données en fonction des
 
 Avec l'apprentissage non supervisé, il n'y a pas de retour d'information basé sur les résultats de la prédiction.
 
+#### Exemple :
+- **Regroupement** : Prenez une collection de 1 000 000 de gènes différents, et trouvez un moyen de regrouper automatiquement ces gènes en groupes qui sont en quelque sorte similaires ou liés par différentes variables, telles que la durée de vie, l'emplacement, les rôles, etc.
+- **Non-groupée** : L'algorithme "Cocktail Party", vous permet de trouver une structure dans un environnement chaotique. (c'est-à-dire identifier des voix et des musiques individuelles à partir d'un maillage de sons lors d'un cocktail).
