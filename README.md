@@ -26,8 +26,7 @@ En général, tout problème de Machine Learning peut être attribué à l'une d
 Dans l'apprentissage supervisé, on nous donne un ensemble de données et nous savons déjà à quoi doit ressembler notre sortie correcte, en ayant l'idée qu'il y a une relation entre l'entrée et la sortie.
 
 Les problèmes d'apprentissage supervisés sont classés en deux catégories : les problèmes de **_"régression"_** et les problèmes de **_"classification"_**. \
-Dans un problème de régression, nous essayons de prédire les résultats dans une sortie continue, ce qui signifie que nous essayons de faire correspondre les variables d'entrée à une fonction continue quelconque. 
-
+Dans un problème de régression, nous essayons de prédire les résultats dans une sortie continue, ce qui signifie que nous essayons de faire correspondre les variables d'entrée à une fonction continue quelconque. \
 Dans un problème de classification, nous essayons plutôt de prédire les résultats dans une sortie discrète. En d'autres termes, nous essayons de faire correspondre les variables d'entrée à des catégories discrètes. 
 
 #### Exemple :
