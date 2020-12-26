@@ -30,9 +30,9 @@ Dans un problème de régression, nous essayons de prédire les résultats dans 
 Dans un problème de classification, nous essayons plutôt de prédire les résultats dans une sortie discrète. En d'autres termes, nous essayons de faire correspondre les variables d'entrée à des catégories discrètes. 
 
 #### Exemple :
-- **Regression** : Given a picture of a person, we have to predict their age on the basis of the given picture
+- **Régression** : En se basant sur l'image donnée d'une personne, il faut prévoir son âge
 
-- **Classification** : Given a patient with a tumor, we have to predict whether the tumor is malignant or benign. 
+- **Classification** : Pour un patient atteint d'une tumeur, nous devons prévoir si la tumeur est maligne ou bénigne.
 
 ## Apprentissage Non-Supervisé:
 L'apprentissage non supervisé nous permet d'aborder les problèmes avec peu ou pas d'idée de ce à quoi nos résultats devraient ressembler. Nous pouvons obtenir une structure à partir de données dont nous ne connaissons pas nécessairement l'effet des variables.
