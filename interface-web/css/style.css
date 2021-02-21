@@ -1,0 +1,118 @@
+*{
+    margin: 0;
+    background-color: #f7f7f7;
+    padding: 0;
+}
+body{
+    overflow-y: hidden;
+}
+main{
+    height: 70vh;
+}
+header{
+    display :flex;
+    justify-content :space-between;
+    align-items: center;
+    padding: 20px;
+}
+header .logo{
+    height: 100px;
+    width: auto;
+    margin-right: 10px;
+}
+header h3{
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+    color: #1b0f00;
+    font-size: 2rem;
+    font-family: 'Playfair Display';
+    text-align: center;
+    display :flex;
+    align-items: center;
+
+}
+.line{
+    background-color: black;
+    height: 1.5px;
+}
+
+#board{
+    width: 425px;
+    height: 425px;
+    border: 1px solid black;
+    cursor:crosshair;
+    padding: 10px;
+    margin: 20px;
+}
+#cnvrtBtn{
+    font-size: 16px;
+    OUTLINE: NONE;
+    padding: 10px 20px;
+    border: none;
+    background-color: #6a6e83;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    WIDTH: 125px;
+    transition: 1s;
+
+}
+#cnvrtBtn:active{
+    transition:300ms;
+    transform: scale(0.8);
+}
+
+main{
+    display: flex;
+    justify-content :space-around;
+    align-items: center; 
+    height: 73vh;
+}
+#box{
+    background-color: #f7f7f7;
+    border: 1px black solid;
+    padding: 10px;
+    
+}
+#resultat{
+    display: flex;
+    margin: 20px 10px;
+    font-size: 10rem;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 350px;
+    height: 300px;
+    padding: 10px;
+    border: 3px solid black;
+}
+
+
+#copyBtn{
+    margin-left: 10px;
+    background-color: white;
+    border: 2px solid black;
+    cursor: pointer;
+    padding:5px 10px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+#copyBtn:hover{
+    background-color: #ddd;
+}
+footer{
+    justify-content: center;
+    background-color: #6a6e83;
+    align-items: center;
+    padding: 20px;
+    display: flex;
+
+}
+#ourName{
+    background-color: #6a6e83;
+    font-size: 1.4rem;
+    font-family: 'Poppins';
+    text-align: center;
+}

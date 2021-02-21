@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/drawingboard.css">
+    <script defer src="./js/app.js"></script>
+    <title>OCR</title>
+</head>
+<body>
+    <header>
+        <h3>Reconnaissance optique <br>des caractères Tifinagh</h3>
+        <img src="./img/logo.png" alt="" class="logo">
+    </header>
+<hr class="line">
+    <main>
+        <div id="board"></div>
+        <button id="cnvrtBtn">OCR >></button>
+        <div id="box" >
+            <button id="copyBtn" onclick="copyToClipboard('#resultat')">Copy</button>
+            <p id="resultat">ⵣ</p> 
+        </div>
+
+    </main>
+    <footer>
+        <h2 id="ourName">Copyright &#169; HexaCoders</h2>
+    </footer>
+    
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js" integrity="sha512-wUa0ktp10dgVVhWdRVfcUO4vHS0ryT42WOEcXjVVF2+2rcYBKTY7Yx7JCEzjWgPV+rj2EDUr8TwsoWF6IoIOPg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.js" integrity="sha512-UNbeFrHORGTzMn3HTt00fvdojBYHLPxJbLChmtoyDwB6P9hX5mah3kMKm0HHNx/EvSPJt14b+SlD8xhuZ4w9Lg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/drawingboard.js/0.4.2/drawingboard.js" integrity="sha512-jOpCCWx1DHztx2fuLiF94Fo9PIHiSk94/CucvCfMfZeF3p5ELsMVTgxjLGSzVzyv7m4id2W4ayRK8Yb/PHL84w==" crossorigin="anonymous"></script>
+<script>
+
+</script>
+</html>
