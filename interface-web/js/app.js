@@ -10,9 +10,7 @@ $(document).ready(function(){
     webStorage: true
 });
     $("#cnvrtBtn").click(function(){
-        domtoimage.toBlob(document.getElementsByClassName('drawing-board-canvas')[0]).then(function(blob){
-            //document.getElementById('board')
-       
+        domtoimage.toBlob(document.getElementsByClassName('drawing-board-canvas')[0]).then(function(blob){       
         window.saveAs(blob, 'tifinagh.png');
     })
 })

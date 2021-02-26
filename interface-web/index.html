@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,33 +10,137 @@
     <script defer src="./js/app.js"></script>
     <title>OCR</title>
 </head>
+
 <body>
     <header>
         <h3>Reconnaissance optique <br>des caractères Tifinagh</h3>
         <img src="./img/logo.png" alt="" class="logo">
     </header>
-<hr class="line">
+    <hr class="line">
     <main>
-        <div id="board"></div>
+        Draw a number in this box
+        <div id="canvas-container"></div>
+        <div id="prediction"></div>
+        <div id="controls">
+            Clear</div>
         <button id="cnvrtBtn">OCR >></button>
-        <div id="box" >
+        <div id="box">
             <button id="copyBtn" onclick="copyToClipboard('#resultat')">Copy</button>
-            <p id="resultat">ⵣ</p> 
+            <p id="resultat">ⵣ</p>
         </div>
 
     </main>
     <footer>
         <h2 id="ourName">Copyright &#169; HexaCoders</h2>
     </footer>
-    
+
 
 
 </body>
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js" integrity="sha512-wUa0ktp10dgVVhWdRVfcUO4vHS0ryT42WOEcXjVVF2+2rcYBKTY7Yx7JCEzjWgPV+rj2EDUr8TwsoWF6IoIOPg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.js" integrity="sha512-UNbeFrHORGTzMn3HTt00fvdojBYHLPxJbLChmtoyDwB6P9hX5mah3kMKm0HHNx/EvSPJt14b+SlD8xhuZ4w9Lg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/drawingboard.js/0.4.2/drawingboard.js" integrity="sha512-jOpCCWx1DHztx2fuLiF94Fo9PIHiSk94/CucvCfMfZeF3p5ELsMVTgxjLGSzVzyv7m4id2W4ayRK8Yb/PHL84w==" crossorigin="anonymous"></script>
-<script>
 
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
+<script>
+    (function () {
+        // Creates a new canvas element and appends it as a child
+        // to the parent element, and returns the reference to
+        // the newly created canvas element
+        var model;
+        async function loadModel() {
+            model = await tf.loadLayersModel('model/model.json');
+        }
+
+        function createCanvas(parent, width, height) {
+            var canvas = {};
+            canvas.node = document.createElement('canvas');
+            canvas.node.setAttribute('id', 'canvas');
+            canvas.context = canvas.node.getContext('2d');
+            canvas.node.width = width || 100;
+            canvas.node.height = height || 100;
+            parent.appendChild(canvas.node);
+            return canvas;
+        }
+
+        async function init(container, width, height, fillColor) {
+            var canvas = createCanvas(container, width, height);
+            var ctx = canvas.context;
+            //define a custom fillCircle method
+            ctx.fillCircle = function (x, y, radius, fillColor) {
+                this.fillStyle = fillColor;
+                this.beginPath();
+                this.moveTo(x, y);
+                this.arc(x, y, radius, 0, Math.PI * 2, false);
+                this.fill();
+            };
+            ctx.clearTo = function (fillColor) {
+                ctx.fillStyle = fillColor;
+                ctx.fillRect(0, 0, width, height);
+            };
+            ctx.clearTo(fillColor || "#ffffff");
+
+            // bind mouse events
+            canvas.node.onmousemove = function (e) {
+                if (!canvas.isDrawing) {
+                    return;
+                }
+                var x = e.pageX - this.offsetLeft;
+                var y = e.pageY - this.offsetTop;
+                var radius = 8; // or whatever
+                var fillColor = '#000000';
+                ctx.fillCircle(x, y, radius, fillColor);
+            };
+            canvas.node.onmousedown = function (e) {
+                canvas.isDrawing = true;
+            };
+            canvas.node.onmouseup = function (e) {
+                canvas.isDrawing = false;
+            };
+            loadModel();
+        }
+
+        function predict(tfImage) {
+            var output = model.predict(tfImage);
+            var result = Array.from(output.dataSync());
+            console.log('Output is : ', Array.from(output.dataSync()));
+            var maxPossibility = result.reduce(function (a, b) { return Math.max(a, b) });
+            console.log(maxPossibility);
+            document.getElementById('prediction').innerHTML = '<p>'
+                + result.indexOf(maxPossibility) + '</p>';
+        }
+        function clear() {
+            console.log('clear canvas');
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d');
+            ctx.clearTo('#ffffff');
+            document.getElementById('prediction').innerHTML = '';
+        }
+        function recogniseNumber() {
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d');
+
+            // console.log(ctx.getImageData(0,0, 100, 100));
+            var imageData = ctx.getImageData(0, 0, 400, 400);
+            var tfImage = tf.browser.fromPixels(imageData, 1);
+
+            //Resize to 50X50
+            var tfResizedImage = tf.image.resizeBilinear(tfImage, [50, 50]);
+            //Since white is 255 black is 0 so need to revert the values
+            //so that white is 0 and black is 255
+            tfResizedImage = tf.cast(tfResizedImage, 'float32');
+            tfResizedImage = tf.abs(tfResizedImage.sub(tf.scalar(255)))
+                .div(tf.scalar(255)).flatten();
+            tfResizedImage = tfResizedImage.reshape([-1,1, 50, 50]);
+
+            //Make another dimention as the model expects
+            console.log(tfResizedImage.dataSync());
+            predict(tfResizedImage);
+        }
+
+        var container = document.getElementById('canvas-container');
+        init(container, 400, 400, '#ffffff');
+        // document.getElementById('clear').addEventListener('click', clear);
+        document.getElementById('cnvrtBtn').addEventListener('click', recogniseNumber);
+
+    })();
 </script>
+
 </html>
