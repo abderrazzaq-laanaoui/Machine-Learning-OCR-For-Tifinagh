@@ -18,15 +18,12 @@
     </header>
     <hr class="line">
     <main>
-        Draw a number in this box
         <div id="canvas-container"></div>
         <div id="prediction"></div>
-        <div id="controls">
-            Clear</div>
         <button id="cnvrtBtn">OCR >></button>
         <div id="box">
             <button id="copyBtn" onclick="copyToClipboard('#resultat')">Copy</button>
-            <p id="resultat">ⵣ</p>
+            <p id="resultat"></p>
         </div>
 
     </main>
@@ -40,6 +37,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
 <script>
+
+    const CATEGORIES = ['ⴰ', 'ⴱ', 'ⵛ', 'ⴷ', 'ⴹ', 'ⵄ', 'ⴼ', 'ⴳ', 'ⵖ', 'ⴳⵯ', 'ⵀ', 'ⵃ', 'ⵊ', 'ⴽ', 'ⴽⵯ',
+                'ⵍ','ⵎ','ⵏ', 'ⵇ', 'ⵔ', 'ⵕ', 'ⵙ', 'ⵚ', 'ⵜ', 'ⵟ', 'ⵡ', 'ⵅ', 'ⵢ', 'ⵣ','ⵥ', 'ⴻ', 'ⵉ', 'ⵓ'];
     (function () {
         // Creates a new canvas element and appends it as a child
         // to the parent element, and returns the reference to
@@ -84,7 +84,7 @@
                 }
                 var x = e.pageX - this.offsetLeft;
                 var y = e.pageY - this.offsetTop;
-                var radius = 8; // or whatever
+                var radius = 15; // or whatever
                 var fillColor = '#000000';
                 ctx.fillCircle(x, y, radius, fillColor);
             };
@@ -103,8 +103,8 @@
             console.log('Output is : ', Array.from(output.dataSync()));
             var maxPossibility = result.reduce(function (a, b) { return Math.max(a, b) });
             console.log(maxPossibility);
-            document.getElementById('prediction').innerHTML = '<p>'
-                + result.indexOf(maxPossibility) + '</p>';
+            document.getElementById('resultat').innerText =
+                 CATEGORIES[result.indexOf(maxPossibility)];
         }
         function clear() {
             console.log('clear canvas');
@@ -128,7 +128,7 @@
             tfResizedImage = tf.cast(tfResizedImage, 'float32');
             tfResizedImage = tf.abs(tfResizedImage.sub(tf.scalar(255)))
                 .div(tf.scalar(255)).flatten();
-            tfResizedImage = tfResizedImage.reshape([-1,1, 50, 50]);
+            tfResizedImage = tfResizedImage.reshape([-1,50, 50,1]);
 
             //Make another dimention as the model expects
             console.log(tfResizedImage.dataSync());
