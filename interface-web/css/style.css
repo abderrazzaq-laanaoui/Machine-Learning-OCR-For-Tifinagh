@@ -78,19 +78,21 @@ main{
 #resultat{
     display: flex;
     margin: 20px 10px;
-    font-size: 10rem;
+    font-size: 20rem;
     text-align: center;
     justify-content: center;
     align-items: center;
     background-color: white;
     width: 350px;
     height: 300px;
-    padding: 10px;
+    padding: 0 10px 20px 10px;
     border: 3px solid black;
 }
 
-
-#copyBtn{
+#canvas-container{
+    border: 3px solid black;
+}
+.btn{
     margin-left: 10px;
     background-color: white;
     border: 2px solid black;

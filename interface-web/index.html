@@ -18,11 +18,15 @@
     </header>
     <hr class="line">
     <main>
-        <div id="canvas-container"></div>
-        <div id="prediction"></div>
+        <div id="board">           
+             <button class="btn" id="clear">Clear</button>
+            <div id="canvas-container">
+        </div>
+        </div>
+        
         <button id="cnvrtBtn">OCR >></button>
         <div id="box">
-            <button id="copyBtn" onclick="copyToClipboard('#resultat')">Copy</button>
+            <button class="btn" id="copyBtn" onclick="copyToClipboard('#resultat')">Copy</button>
             <p id="resultat"></p>
         </div>
 
@@ -34,6 +38,7 @@
 
 
 </body>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
 <script>
@@ -111,14 +116,14 @@
             var canvas = document.getElementById('canvas');
             var ctx = canvas.getContext('2d');
             ctx.clearTo('#ffffff');
-            document.getElementById('prediction').innerHTML = '';
+            document.getElementById('resultat').innerText = '';
         }
         function recogniseNumber() {
             var canvas = document.getElementById('canvas');
             var ctx = canvas.getContext('2d');
 
             // console.log(ctx.getImageData(0,0, 100, 100));
-            var imageData = ctx.getImageData(0, 0, 400, 400);
+            var imageData = ctx.getImageData(0, 0, 350, 350);
             var tfImage = tf.browser.fromPixels(imageData, 1);
 
             //Resize to 50X50
@@ -136,8 +141,8 @@
         }
 
         var container = document.getElementById('canvas-container');
-        init(container, 400, 400, '#ffffff');
-        // document.getElementById('clear').addEventListener('click', clear);
+        init(container, 350, 350, '#ffffff');
+        document.getElementById('clear').addEventListener('click', clear);
         document.getElementById('cnvrtBtn').addEventListener('click', recogniseNumber);
 
     })();
