@@ -46,7 +46,7 @@ canvas.node.onmousemove = function (e) {
     }
     var x = e.pageX - this.offsetLeft;
     var y = e.pageY - this.offsetTop;
-    var radius = 15; // or whatever
+    var radius = 10; // or whatever
     var fillColor = '#000000';
     ctx.fillCircle(x, y, radius, fillColor);
 };
