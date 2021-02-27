@@ -17,16 +17,16 @@
     </header>
     <hr class="line">
     <main>
-        <div id="board">           
-             <button class="btn" id="clear">Clear</button>
+        <div id="board">
+            <button class="btn" id="clear">Clear</button>
             <div id="canvas-container">
+            </div>
         </div>
-        </div>
-        
+
         <button id="cnvrtBtn">OCR >></button>
         <div id="box">
             <button class="btn" id="copyBtn" onclick="copyToClipboard('#resultat')">Copy</button>
-            <p id="resultat"></p>
+            <p class="unselectable" id="resultat"></p>
         </div>
 
     </main>
@@ -34,21 +34,37 @@
         <h2 id="ourName">Copyright &#169; HexaCoders</h2>
     </footer>
 
-
-
 </body>
 
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
 <script src="./js/app.js"></script>
 <script>
-  function copyToClipboard(element) {
-  var $temp = $("<input>");
-  $("body").append($temp);
-  $temp.val($(element).text()).select();
-  document.execCommand("copy");
-  $temp.remove();
-}
+    function copyToClipboard(element) {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val($(element).text()).select();
+        document.execCommand("copy");
+        $temp.remove();
+    }
+    $.fn.extend({
+        disableSelection: function () {
+            this.each(function () {
+                if (typeof this.onselectstart != 'undefined') {
+                    this.onselectstart = function () { return false; };
+                } else if (typeof this.style.MozUserSelect != 'undefined') {
+                    this.style.MozUserSelect = 'none';
+                } else {
+                    this.onmousedown = function () { return false; };
+                }
+            });
+        }
+    });
+
+    $(document).ready(function () {
+        $('.unselectable').disableSelection();
+    });
 </script>
 
 
