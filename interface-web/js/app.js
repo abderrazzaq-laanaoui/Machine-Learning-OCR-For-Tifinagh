@@ -103,4 +103,8 @@ document.getElementById('clear').addEventListener('click', clear);
 document.getElementById('cnvrtBtn').addEventListener('click', recogniseNumber);
 
 })();
-
+document.addEventListener('keydown', function(event) {
+    if (event.code == 'Escape') {
+      document.getElementById("clear").click();
+    }
+  });
