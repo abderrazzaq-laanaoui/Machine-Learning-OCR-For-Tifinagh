@@ -60,7 +60,7 @@ loadModel();
 }
 
 function predict(tfImage) {
-var output = model.predict(tfImage);
+var output = await model.predict(tfImage);
 var result = Array.from(output.dataSync());
 console.log('Output is : ', Array.from(output.dataSync()));
 var maxPossibility = result.reduce(function (a, b) { return Math.max(a, b) });
