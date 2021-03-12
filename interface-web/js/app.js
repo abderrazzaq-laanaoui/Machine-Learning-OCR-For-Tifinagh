@@ -1,6 +1,4 @@
-
-
-    const CATEGORIES = ['ⴰ', 'ⴱ', 'ⵛ', 'ⴷ', 'ⴹ', 'ⵄ', 'ⴼ', 'ⴳ', 'ⵖ', 'ⴳⵯ', 'ⵀ', 'ⵃ', 'ⵊ', 'ⴽ', 'ⴽⵯ',
+const CATEGORIES = ['ⴰ', 'ⴱ', 'ⵛ', 'ⴷ', 'ⴹ', 'ⵄ', 'ⴼ', 'ⴳ', 'ⵖ', 'ⴳⵯ', 'ⵀ', 'ⵃ', 'ⵊ', 'ⴽ', 'ⴽⵯ',
     'ⵍ','ⵎ','ⵏ', 'ⵇ', 'ⵔ', 'ⵕ', 'ⵙ', 'ⵚ', 'ⵜ', 'ⵟ', 'ⵡ', 'ⵅ', 'ⵢ', 'ⵣ','ⵥ', 'ⴻ', 'ⵉ', 'ⵓ'];
 (function () {
 // Creates a new canvas element and appends it as a child
@@ -8,7 +6,12 @@
 // the newly created canvas element
 var model;
 async function loadModel() {
-model = await tf.loadLayersModel('model/model.json');
+    try {
+        model = await tf.loadLayersModel('model/model.json');
+        console.log("model loaded")
+    } catch(e) {
+       console.log("the model could not be loaded")
+    }
 }
 
 function createCanvas(parent, width, height) {
@@ -21,8 +24,8 @@ canvas.node.height = height || 100;
 parent.appendChild(canvas.node);
 return canvas;
 }
-
 async function init(container, width, height, fillColor) {
+    
 var canvas = createCanvas(container, width, height);
 var ctx = canvas.context;
 //define a custom fillCircle method
@@ -56,26 +59,27 @@ canvas.node.onmousedown = function (e) {
 canvas.node.onmouseup = function (e) {
     canvas.isDrawing = false;
 };
+
 loadModel();
 }
 
-function predict(tfImage) {
+async function predict(tfImage) {
 var output = await model.predict(tfImage);
 var result = Array.from(output.dataSync());
-console.log('Output is : ', Array.from(output.dataSync()));
+//console.log('Output is : ', Array.from(output.dataSync()));
 var maxPossibility = result.reduce(function (a, b) { return Math.max(a, b) });
-console.log(maxPossibility);
+//console.log(maxPossibility);
 document.getElementById('resultat').innerText =
      CATEGORIES[result.indexOf(maxPossibility)];
 }
 function clear() {
-console.log('clear canvas');
+//console.log('clear canvas');
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 ctx.clearTo('#ffffff');
 document.getElementById('resultat').innerText = '';
 }
-function recogniseNumber() {
+function recogniseAlphabet() {
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
@@ -85,22 +89,21 @@ var tfImage = tf.browser.fromPixels(imageData, 1);
 
 //Resize to 50X50
 var tfResizedImage = tf.image.resizeBilinear(tfImage, [50, 50]);
-//Since white is 255 black is 0 so need to revert the values
+
 //so that white is 0 and black is 255
 tfResizedImage = tf.cast(tfResizedImage, 'float32');
 tfResizedImage = tf.abs(tfResizedImage.sub(tf.scalar(255)))
     .div(tf.scalar(255)).flatten();
 tfResizedImage = tfResizedImage.reshape([-1,50, 50,1]);
 
-//Make another dimention as the model expects
-console.log(tfResizedImage.dataSync());
+//console.log(tfResizedImage.dataSync());
 predict(tfResizedImage);
 }
 
 var container = document.getElementById('canvas-container');
 init(container, 350, 350, '#ffffff');
 document.getElementById('clear').addEventListener('click', clear);
-document.getElementById('cnvrtBtn').addEventListener('click', recogniseNumber);
+document.getElementById('cnvrtBtn').addEventListener('click', recogniseAlphabet);
 
 })();
 document.addEventListener('keydown', function(event) {
