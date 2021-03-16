@@ -24,21 +24,22 @@ header h3{
     text-transform: uppercase;
     margin: 0;
     padding: 0;
-    color: #1b0f00;
+    font-weight: bloder;
+    color: #182b76;
     font-size: 2rem;
-    font-family: 'Playfair Display';
+    font-family: 'Helvetica';
     text-align: center;
     display :flex;
     align-items: center;
 
 }
 .line{
-    background-color: black;
-    height: 1.5px;
+    background-color: #182b76;
+    height: 2.5px;
 }
 
 #board{
-    border: 1px solid black;
+    border: 3px solid #182b76;
     padding: 10px;
     margin: 20px;
 }
@@ -47,11 +48,14 @@ header h3{
     OUTLINE: NONE;
     padding: 10px 20px;
     border: none;
-    background-color: #6a6e83;
+    background-color: #182b76;
     border-radius: 6px;
     cursor: pointer;
+    font-family: 'poppins';
+    color: white;
+    font-weight: bolder;
     font-weight: bold;
-    WIDTH: 125px;
+    width: 125px;
     transition: 1s;
 
 }
@@ -68,7 +72,7 @@ main{
 }
 #box{
     background-color: #f7f7f7;
-    border: 1px black solid;
+    border: 3px #182b76 solid;
     padding: 10px;
     
 }
@@ -82,12 +86,13 @@ main{
     background-color: white;
     width: 320px;
     height: 320px;
+    color: black;
     padding: 0 10px 20px 10px;
-    border: 3px solid black;
+    border: 3px solid #e1051d;
 }
 
 #canvas-container{
-    border: 3px solid black;
+    border: 3px solid #e1051d;
     width: fit-content;
     height: 350px;
     margin: 20px 10px;
@@ -96,11 +101,13 @@ main{
 .btn{
     margin-left: 10px;
     background-color: white;
-    border: 2px solid black;
+    border: 2px solid #e1051d;
     cursor: pointer;
+    color: #e1051d;
     padding:5px 10px;
     margin-top: 10px;
     font-weight: bold;
+
 }
 .btn:hover{
     background-color: #ddd;
@@ -108,17 +115,21 @@ main{
 .btn:active{
     transform: scale(0.9);
 }
+
 footer{
     justify-content: center;
-    background-color: #6a6e83;
+    background-color: #182b76;
     align-items: center;
     padding: 20px;
     display: flex;
+    margin-top: 10px;
 
 }
 #ourName{
-    background-color: #6a6e83;
+    background-color: transparent;
     font-size: 1.4rem;
-    font-family: 'Poppins';
+    font-family: 'Playfair Display';
+    font-weight: bloder;
+    color: #fff;
     text-align: center;
 }
