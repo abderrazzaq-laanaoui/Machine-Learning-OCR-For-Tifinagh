@@ -1,5 +1,5 @@
 *{
-    background-color: coral;
+    /* background-color: coral; */
 }
 header h3{
     font-size: 1.3rem;
@@ -19,6 +19,7 @@ header .logo{
     font-size: 13rem;
     width: 200px;
     height: 200px;
+    color: #182b76;
 }
 #canvas-container{
     height: 300px;
