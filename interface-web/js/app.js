@@ -1,6 +1,6 @@
 const CATEGORIES = ['ⴰ', 'ⴱ', 'ⵛ', 'ⴷ', 'ⴹ', 'ⵄ', 'ⴼ', 'ⴳ', 'ⵖ', 'ⴳⵯ', 'ⵀ', 'ⵃ', 'ⵊ', 'ⴽ', 'ⴽⵯ',
     'ⵍ','ⵎ','ⵏ', 'ⵇ', 'ⵔ', 'ⵕ', 'ⵙ', 'ⵚ', 'ⵜ', 'ⵟ', 'ⵡ', 'ⵅ', 'ⵢ', 'ⵣ','ⵥ', 'ⴻ', 'ⵉ', 'ⵓ'];
-(function () {
+(function () { 
 // Creates a new canvas element and appends it as a child
 // to the parent element, and returns the reference to
 // the newly created canvas element
@@ -50,7 +50,7 @@ canvas.node.onmousemove = function (e) {
     var x = e.pageX - this.offsetLeft;
     var y = e.pageY - this.offsetTop;
     var radius = 10; // or whatever
-    var fillColor = '#000000';
+    var fillColor = '#182b76';
     ctx.fillCircle(x, y, radius, fillColor);
 };
 canvas.node.onmousedown = function (e) {
@@ -79,7 +79,8 @@ var ctx = canvas.getContext('2d');
 ctx.clearTo('#ffffff');
 document.getElementById('resultat').innerText = '';
 }
-function recogniseAlphabet() {
+function recogniseAlphabet() 
+{
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
@@ -101,13 +102,16 @@ predict(tfResizedImage);
 }
 
 var container = document.getElementById('canvas-container');
-init(container, 350, 350, '#ffffff');
+
+    init(container, 350, 350, '#fff');
+
+
 document.getElementById('clear').addEventListener('click', clear);
 document.getElementById('cnvrtBtn').addEventListener('click', recogniseAlphabet);
 
 })();
 document.addEventListener('keydown', function(event) {
-    if (event.code == 'Escape') {
+    if (event.code === 'Escape') {
       document.getElementById("clear").click();
     }
   });

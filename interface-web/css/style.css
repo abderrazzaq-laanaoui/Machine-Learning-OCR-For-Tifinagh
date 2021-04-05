@@ -4,7 +4,7 @@
     padding: 0;
 }
 body{
-    overflow-y: hidden;
+    overflow: hidden;
 }
 main{
     height: 70vh;
@@ -24,10 +24,10 @@ header h3{
     text-transform: uppercase;
     margin: 0;
     padding: 0;
-    font-weight: bloder;
+    font-weight: bolder;
     color: #182b76;
     font-size: 2rem;
-    font-family: 'Helvetica';
+    font-family: 'Helvetica', serif;
     text-align: center;
     display :flex;
     align-items: center;
@@ -35,7 +35,8 @@ header h3{
 }
 .line{
     background-color: #182b76;
-    height: 2.5px;
+    height: 3px;
+    width: 100%;
 }
 
 #board{
@@ -45,15 +46,14 @@ header h3{
 }
 #cnvrtBtn{
     font-size: 16px;
-    OUTLINE: NONE;
+    outline: none;
     padding: 10px 20px;
     border: none;
     background-color: #182b76;
     border-radius: 6px;
     cursor: pointer;
-    font-family: 'poppins';
+    font-family: 'poppins', serif;
     color: white;
-    font-weight: bolder;
     font-weight: bold;
     width: 125px;
     transition: 1s;
@@ -86,7 +86,7 @@ main{
     background-color: white;
     width: 320px;
     height: 320px;
-    color: black;
+    color: #182b76;
     padding: 0 10px 20px 10px;
     border: 3px solid #e1051d;
 }
@@ -128,8 +128,8 @@ footer{
 #ourName{
     background-color: transparent;
     font-size: 1.4rem;
-    font-family: 'Playfair Display';
-    font-weight: bloder;
+    font-family: 'Playfair Display', sans-serif;
+    font-weight: bolder;
     color: #fff;
     text-align: center;
 }

@@ -1,0 +1,25 @@
+*{
+    background-color: coral;
+}
+header h3{
+    font-size: 1.3rem;
+}
+header .logo{
+    height: 80px;
+    width: auto;
+    margin-right: 0;
+}
+#cnvrtBtn{
+    margin: 10px;
+    font-size: 12px;
+    padding: 10px;
+}
+
+#resultat{
+    font-size: 13rem;
+    width: 200px;
+    height: 200px;
+}
+#canvas-container{
+    height: 300px;
+}
